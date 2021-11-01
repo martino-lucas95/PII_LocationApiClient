@@ -18,26 +18,26 @@ namespace Ucu.Poo.LocationApi.Demo
             const string addressMullin = "Comandante Braga 2715";
             LocationApiClient client = new LocationApiClient();
 
-            Location locationCentral = await client.GetLocation(addressCentral);
+            Location locationCentral = await client.GetLocationAsync(addressCentral);
             Console.WriteLine($"Las coordenadas de '{addressCentral}' son " +
                 $"'{locationCentral.Latitude}:{locationCentral.Longitude}'");
 
-            Location locationMullin = await client.GetLocation(addressMullin);
+            Location locationMullin = await client.GetLocationAsync(addressMullin);
             Console.WriteLine($"Las coordenadas de '{addressMullin}' son " +
                 $"'{locationMullin.Latitude}:{locationMullin.Longitude}'");
 
-            Distance distance = await client.GetDistance(locationCentral, locationMullin);
+            Distance distance = await client.GetDistanceAsync(locationCentral, locationMullin);
             Console.WriteLine($"La distancia entre '{locationCentral.Latitude},{locationCentral.Longitude}' y "+
                 $"'{locationMullin.Latitude},{locationMullin.Longitude}' es de {distance.TravelDistance} kilómetros.");
 
-            distance = await client.GetDistance(addressCentral, addressMullin);
+            distance = await client.GetDistanceAsync(addressCentral, addressMullin);
             Console.WriteLine($"La distancia entre '{addressCentral}' y '{addressMullin}' " +
                 $"es de {distance.TravelDistance} kilómetros.");
 
-            await client.DownloadMap(locationCentral.Latitude, locationCentral.Longitude, @"map.png");
+            await client.DownloadMapAsync(locationCentral.Latitude, locationCentral.Longitude, @"map.png");
             Console.WriteLine($"Descargado el mapa de '{addressCentral}'");
 
-            await client.DownloadRoute(locationCentral.Latitude, locationCentral.Longitude,
+            await client.DownloadRouteAsync(locationCentral.Latitude, locationCentral.Longitude,
                 locationMullin.Latitude, locationMullin.Longitude, @"route.png");
             Console.WriteLine($"Descargado el mapa de '{addressCentral}' a '{addressMullin}'");
         }
